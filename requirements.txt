@@ -1,0 +1,4 @@
+currencyconverter
+matplotlib
+pandas
+scikit-learn
