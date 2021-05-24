@@ -2,7 +2,6 @@
 import pandas as pd
 from path import preprocessed_dir
 from helper import convert_to_HKD, load_csv_as_df
-from sklearn.preprocessing import StandardScaler
 
 df_acc = load_csv_as_df('Data_account.csv')
 df_bud = load_csv_as_df('Data_budget.csv')
@@ -27,11 +26,8 @@ df_tra = df_tra[['psid', 'amount_in_HKD', 'areix_category']]
 df_tra_pivot = pd.pivot_table(df_tra, index='psid', columns='areix_category', values='amount_in_HKD')
 df_tra_pivot = df_tra_pivot.join(df_acc_bal, on='psid')
 df_tra_pivot = df_tra_pivot.fillna(0) # fill all nan with 0
+df_tra_pivot.to_csv(preprocessed_dir + 'Data_processed.csv', index=False)
 
-# scale the values using a standard scaler, as a standard normalization approach before clustering
-ss = StandardScaler()
-df_res = df_tra_pivot #copy
-df_res = pd.DataFrame(ss.fit_transform(df_res),columns = df_res.columns)
-df_res.to_csv(preprocessed_dir + 'Data_scaled.csv', index=False)
+
 
 
