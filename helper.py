@@ -1,10 +1,11 @@
 import pandas as pd
+from path import raw_dir
 from currency_converter import CurrencyConverter
 c = CurrencyConverter(fallback_on_missing_rate=True)
 
 # function to load data into dataframes
-def load_csv_as_df(path_to_csv):
-    with open(path_to_csv, encoding="UTF-8") as csvfile:
+def load_csv_as_df(path_to_csv, dir=raw_dir, encoding="UTF-8"):
+    with open(dir + path_to_csv, encoding=encoding) as csvfile:
         return pd.read_csv(csvfile)
 
 # given a field name and original currency code, convert the value of that field to HKD
