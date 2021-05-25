@@ -3,6 +3,7 @@ import pandas as pd
 from path import preprocessed_dir
 from helper import convert_to_HKD, load_csv_as_df
 
+# load all the csvs into dfs
 df_acc = load_csv_as_df('Data_account.csv')
 df_bud = load_csv_as_df('Data_budget.csv')
 df_tra = load_csv_as_df('Data_Transaction.csv')
@@ -45,7 +46,3 @@ df_tra_pivot = df_tra_pivot.reindex(sorted_index)
 
 # output the file as a processed csv
 df_tra_pivot.to_csv(preprocessed_dir + 'Data_processed.csv')
-
-
-
-
