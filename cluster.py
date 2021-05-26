@@ -5,12 +5,19 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from path import preprocessed_dir, output_dir
 from helper import load_csv_as_df
+from matplotlib.cbook import boxplot_stats
 from sklearn.base import BaseEstimator, ClusterMixin
 from sklearn.cluster import DBSCAN
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import StandardScaler
+
+def boxplot(df, label):
+    # data visualization: plot the boxplot of the given label
+    plt.boxplot(df[label])
+    dct = boxplot_stats(df, label)[0] # get statistics, such as q1, q2, q3, etc.
+    return dct
 
 class AREIX_Cluster(BaseEstimator, ClusterMixin):
     def __init__(self, eps = 0.5, min_samples=10, n_components=3):
