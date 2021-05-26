@@ -1,5 +1,5 @@
 ### Technical assessment
-This trial of the assessment is based on PCA dimensionality reduction, and DBSCAN clustering algorithm. For details of the methodology and results, please refer to the document.
+This trial of the assessment is based on PCA dimensionality reduction, and DBSCAN clustering algorithm. For details of the methodology and results, please refer to the two documents (pdf) named 'AREIX Technical Assessment ~.pdf'.
 
 ### Initialization
 Open a virtual environment and install the dependecies packages there.
