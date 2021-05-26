@@ -19,6 +19,7 @@ def boxplot(df, label):
     dct = boxplot_stats(df, label)[0] # get statistics, such as q1, q2, q3, etc.
     return dct
 
+# class to perform clustering of preprocessed dataset
 class AREIX_Cluster(BaseEstimator, ClusterMixin):
     def __init__(self, eps = 0.5, min_samples=10, n_components=3):
         self.eps = eps #epsilon value used in DBSCAN
@@ -117,6 +118,7 @@ class AREIX_Cluster(BaseEstimator, ClusterMixin):
         else:
             raise NotImplemented('No visualizations for dimensions > 3.')
 
+        # set title and legend, and save the figure
         plt.title('Scatter plot of Clustering Results')
         plt.legend()
         plt.savefig(output_dir + 'cluster_results.png')
@@ -170,17 +172,21 @@ class AREIX_Cluster(BaseEstimator, ClusterMixin):
                 labels = ['negatively big', 'negatively small', 'small', 'big'] # for expenditures
                 self.df_interpret[feature] = self.df_interpret[feature] * -1
 
+            # min and max of each features, slightly tuned to account for values on the line
             fmin = min(self.df_interpret[feature])
             fmax = max(self.df_interpret[feature])
             fdiff = abs(fmax - fmin)
             mmin = fmin - fdiff * 0.01
             mmax = fmax + fdiff * 0.01
+
+            # only three bins when fmin is already not negative
             if fmin > 0:
                 bins = [0, mmax/2, mmax]
                 labels = labels[2:]
             else:
                 bins = [mmin, mmin/2, 0, mmax/2, mmax]
-            print(bins)
+
+            # convert numerical to above categorical bins
             self.df_interpret[feature] = pd.cut(self.df_interpret[feature],
                                            bins=bins,
                                            labels=labels)
@@ -222,7 +228,7 @@ if __name__ == '__main__':
         print('Best score: {}'.format(search.best_score_))
 
         # get the best model and perform clustering
-        model = search.best_estimator_
+        model = search.best_estimator_ #type: cluster instance
         model.fit_predict(df_processed)
         model.plot_before_cluster()
         model.plot_cluster_results()
