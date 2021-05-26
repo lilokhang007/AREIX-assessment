@@ -1,3 +1,8 @@
+"""
+preprocess.py:
+This file preprocesses the given CSVs, and extracts useful information to a preprocessed CSV as an output.
+"""
+
 #import datetime
 import pandas as pd
 from path import preprocessed_dir, output_dir

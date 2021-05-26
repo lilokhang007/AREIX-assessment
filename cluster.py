@@ -179,17 +179,6 @@ class AREIX_Cluster(BaseEstimator, ClusterMixin):
                                            labels=labels)
             self.df_interpret.to_csv(output_dir + 'interpret.csv')
 
-    def interpret_cluster(self):
-        interpret_dict_ls = model.df_interpret.to_dict('records')
-        inv_ls = []
-        for interpret_dict in interpret_dict_ls:
-            inv = {}
-            for key, val in interpret_dict.items():
-                if key != 'label':
-                    inv[val] = inv.get(val, []) + [key]
-            inv_ls.append(inv)
-        return inv_ls
-
 if __name__ == '__main__':
     # load categories columns
     with open(output_dir + 'areix_categories.json', 'rb') as fp:
@@ -225,7 +214,7 @@ if __name__ == '__main__':
         print('Best parameters: {}'.format(search.best_params_))
         print('Best score: {}'.format(search.best_score_))
 
-        # get the best model
+        # get the best model and perform clustering
         model = search.best_estimator_
         model.fit_predict(df_processed)
         model.plot_before_cluster()
