@@ -1,0 +1,8 @@
+,label,Dining & Beverage,Healthcare,Home,Income,Investment Income,Leisure,Others,Shopping,Transportation,bal_sum,saved_amount_sum
+0,-1,negatively small,small,small,big,loss,small,small,small,small,small,small
+1,0,negatively small,negatively small,negatively small,small,loss,negatively small,small,small,negatively small,small,small
+2,1,negatively big,negatively small,negatively small,small,loss,negatively small,small,small,negatively small,small,small
+3,2,big,big,negatively small,small,loss,negatively small,big,small,negatively small,big,small
+4,3,small,small,big,small,big profit,big,small,big,big,negatively big,small
+5,4,negatively small,negatively small,negatively small,big,big loss,negatively small,small,small,negatively small,small,big
+6,5,small,small,big,small,big profit,big,small,big,big,negatively big,big
